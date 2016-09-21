@@ -36,32 +36,31 @@
 
 if (!defined('DS')) 			{ define('DS', 				DIRECTORY_SEPARATOR); }
 if (!defined('ROOT')) 			{ define('ROOT', 			dirname(__FILE__)); }
-if (!defined('SYSTEM'))			{ define('SYSTEM'			ROOT.DS.'system'); }
-if (!defined('CORE')) 			{ define('CORE' 			SYSTEM.DS.'core'); }
-if (!defined('APPLICATION')) 	{ define('APPLICATION' 		ROOT.DS.'application'); }
-if (!defined('CONTROLLERS'))	{ define('CONTROLLERS'  	APPLICATION.DS.'controllers'); }
-if (!defined('MODELS')) 		{ define('MODELS' 			APPLICATION.DS.'models'); }
-if (!defined('VIEWS')) 			{ define('VIEWS'			APPLICATION.DS.'views'); }
+if (!defined('SYSTEM'))			{ define('SYSTEM',			ROOT.DS.'system'); }
+if (!defined('APPLICATION')) 	{ define('APPLICATION', 	ROOT.DS.'application'); }
+if (!defined('CONTROLLERS'))	{ define('CONTROLLERS',  	APPLICATION.DS.'controllers'); }
+if (!defined('MODELS')) 		{ define('MODELS', 			APPLICATION.DS.'models'); }
+if (!defined('VIEWS')) 			{ define('VIEWS',			APPLICATION.DS.'views'); }
 
 if (!defined('PAGE_PARENT')) 	{ define('PAGE_PARENT', 	basename(pathinfo($_SERVER['PHP_SELF'], PATHINFO_DIRNAME))); }
 if (!defined('PAGE')) 			{ define('PAGE', 			pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME)); }
 
 require_once(APPLICATION.DS.'config.php');
-require_once(CORE.DS.'ObjectLoader.php');
-require_once(CORE.DS.'CloneNjin.php');
+require_once(SYSTEM.DS.'ObjectLoader.php');
+require_once(SYSTEM.DS.'CloneNjin.php');
 
 
 /**
 * The chosen class and method is determined at run time.
-* The controller loaded corresponds to the current parent 
-* directory name of the current page. Its method 
+* The controller loaded corresponds to the current parent
+* directory name of the current page. Its method
 * chosen to be called corresponds to the current page name.
-* The ObjectLoader class returns the object controller and 
+* The ObjectLoader class returns the object controller and
 * calls the chosen method, which renders the view. */
 
 $class = PAGE_PARENT;
 $method = PAGE;
-		
+
 try {
 	$controller = ObjectLoader::controller($class);
 	if(method_exists($controller, $method)) {
@@ -71,7 +70,4 @@ try {
 	}
 }catch (Exception $e) {
 	die($e->getMessage());
-}final {
-	unset($class);
-	unset($method);
 }
