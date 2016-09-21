@@ -33,6 +33,53 @@ All clones are php files being the "true views" and should only contain php code
 The template engine processes and clones views built from the views folder located outside the public web root.
 For this reason, put all html and front-end logic "outside" of the public web root and inside CloneNjin/application/views.
 
+Page/init.php
+```
+<?php require_once('path/to/CloneNjin/init.php');
+```
+Page/about.php
+```
+<?php require_once('path/to/CloneNjin/init.php');
+```
+
+
+# Templates
+"/application/views/templates"
+
+header.html
+```
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<title>{{title}}</title>
+	<meta charset="UTF-8" />
+</head>
+<body>
+	<h1>Header</h1>
+```
+footer.html
+```
+	<footer>
+		Footer
+	</footer>
+</body>
+</html>
+```
+
+
+# Views
+"/application/views"
+
+Page/about.html
+```
+{{header}}
+	
+	<p>{{content}}</p>
+	<p>Fact: {{fact}}</p>
+	
+{{footer}}
+```
+
 
 # Controllers
 "/application/controllers"
@@ -42,6 +89,38 @@ Controllers can extend/inheret the CloneNjin class.
 A Controller class name and its file name should match the private and public folder name storing views.
 A method name should correspond to the page name.
 
+Page.php
+```
+class Page extends CloneNjin
+
+{	
+	//Method will automatically be called at run time if 
+	//the current view is "Page/index.php"
+	public function index()
+	{
+		$this->registerKey('header', $this->parse(TEMPLATES.DS.'header.html'));
+		$this->registerKey('footer', $this->parse(TEMPLATES.DS.'footer.html'));
+		$this->registerKey('title', 'Home');
+		$this->registerKey('content', 'Welcome to the home page!');
+		
+		$this->loadClone();
+	}
+	
+	//Method will automatically be called at run time if 
+	//the current view is "Page/about.php"
+	public function about()
+	{
+		$this->registerKey('fact', 'I love to code!');
+		$this->registerKey('header', $this->parse(TEMPLATES.DS.'header.html'));
+		$this->registerKey('footer', $this->parse(TEMPLATES.DS.'footer.html'));
+		$this->registerKey('title', 'About');
+		$this->registerKey('content', 'This is arbitrary content on the about page!');
+		
+		$this->loadClone();
+	}
+	
+}
+```
 
 # Models
 "/application/models"
