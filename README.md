@@ -3,13 +3,13 @@ CloneNjin is an MVC server-side template cloning system. The template engine is 
 
 
 # Template Engine
-"/system/core/CloneNjin.php"
+"/system/CloneNjin.php"
 
 The template engine parses files that contain no PHP code (html aliases or templates) and exist outside the public web root. It replaces the existing raw keys with real values. Keys are registered in controller methods corresponding to actual keys in an alias files or template files. This process is what creates the "true view" or "clone". If a registered key doesn't exist in that alias, or it does but isn't registered, the template engine simply continues parsing until it reaches the end of the file. IMPORTANT: All your views and assets are outside the root and these are what the template engine determines to clone at run time !!! Extend the template engine and create a class for each folder in the public web root and a method for each page in that folder. Then duplicate this file structure outside of the web root in CloneNjin/views folder but using html only and any {{keys}}.
 
 
 # Object Loader
-"/system/core/ObjectLoader.php"
+"/system/ObjectLoader.php"
 
 Use the ObjectLoader class to insert your models for ease.
 
