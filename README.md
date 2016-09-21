@@ -1,21 +1,6 @@
 # CloneNjin
 CloneNjin is an MVC server-side template cloning system. The template engine is a key token registering unit and source code processor. I wrote this software for cloning privately constructed alias files to generate dynamic front-end views.
 
--- OUTSIDE public root --
-CloneNjin/application/controllers/Welcome.php
-CloneNjin/application/views/Welcome/index.html
-
--- INSIDE public root --
-public/somepath/Welcom/index.php
-
-
--- OUTSIDE public root --
-CloneNjin/application/controllers/Page.php
-CloneNjin/application/views/Page/about.html
-
--- INSIDE public root --
-public/somepath/Page/about.php
-
 
 
 --------------------------------------
