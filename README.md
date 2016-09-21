@@ -8,10 +8,10 @@ CloneNjin is an MVC server-side template cloning system. The template engine is 
 The template engine parses files that contain no PHP code (html aliases or templates) and exist outside the public web root. It replaces the existing raw keys with real values. Keys are registered in controller methods corresponding to actual keys in an alias files or template files. This process is what creates the "true view" or "clone". If a registered key doesn't exist in that alias, or it does but isn't registered, the template engine simply continues parsing until it reaches the end of the file. IMPORTANT: All your views and assets are outside the root and these are what the template engine determines to clone at run time !!! Extend the template engine and create a class for each folder in the public web root and a method for each page in that folder. Then duplicate this file structure outside of the web root in CloneNjin/views folder but using html only and any {{keys}}.
 
 
-#Object Loader
+# Object Loader
 "/system/core/ObjectLoader.php"
 
-Use the ObjectLoader class to insert your modules for ease.
+Use the ObjectLoader class to insert your models for ease.
 
 
 # Init
@@ -29,7 +29,7 @@ simply don't include this.
 # Public
 "/public"
 
-Clones go here.
+Insert clones and/or clone directories here.
 All clones are php files being the "true views" and should only contain php code!
 The template engine processes and clones views built from the views folder located outside the public web root.
 For this reason, put all html and front-end logic "outside" of the public web root and inside CloneNjin/application/views.
@@ -38,12 +38,13 @@ For this reason, put all html and front-end logic "outside" of the public web ro
 # Controllers
 "/application/controllers"
 
+Insert your controllers here.
 Controllers can extend/inheret the CloneNjin class.
 A Controller class name and its file name should match the private and public folder name storing views.
 A method name should correspond to the page name.
 
 
-# Modules
-"/application/modules"
+# Models
+"/application/models"
 
-Insert your modules here.
+Insert your models here.
